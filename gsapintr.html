@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="" />
+    <style>
+        :root {
+  --t-top-fill: none;
+  --t-stem-fill: none;
+  --bg-hue: 230;
+  --bg-sat: 15%;
+  --bg-lt: 15%;
+  --bg: hsl(var(--bg-hue), var(--bg-sat), var(--bg-lt));
+  --vignette: hsl(
+    var(--bg-hue),
+    calc(var(--bg-sat) - 2%),
+    calc(var(--bg-lt) - 10%)
+  );
+  --shadow: drop-shadow(2px 2px 2px var(--vignette));
+}
+
+body {
+  @include centered-container();
+
+  background: var(--bg);
+  overflow: hidden;
+  height: 100vh;
+
+  @media screen and (min-width: 900px) {
+    font-size: 24px;
+  }
+}
+
+.container {
+  z-index: 2;
+  overflow: visible;
+  width: 100%;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &:after {
+    z-index: 1;
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background-image: radial-gradient(
+      circle at center center,
+      var(--bg),
+      var(--bg) 40%,
+      var(--vignette) 110%,
+      var(--vignette)
+    );
+  }
+}
+
+.animation {
+  width: 100%;
+  text-align: center;
+  z-index: 3;
+  
+  svg {    
+    filter: var(--shadow);
+    overflow: visible !important;
+    padding-top: 5vh;
+    margin: 0 3vh;
+    max-height: 50vh;
+  }
+}
+
+.controls {
+  width: 100%;
+  height: 100%;
+  max-height: 10vh;
+  // margin: 10em auto 1em;
+  padding: 5vh;
+  text-align: center;
+}
+
+.no-events {
+  pointer-events: none;
+}
+
+path,
+polygon,
+rect {
+  fill: none;
+}
+
+[data-morph-sequence] {
+  display: none;
+}
+
+.letter.t {
+  [data-draw-sequence="1"] {
+    stroke: var(--t-top-fill);
+  }
+
+  [data-draw-sequence="2"] {
+    stroke: var(--t-stem-fill);
+  }
+}
+
+.replay {
+  --replay-button-size: 4em;
+  --replay-border-size: 0.25em;
+  --backup-refresh-button-bg: #cb3c9b;
+
+  height: var(--replay-button-size);
+  width: var(--replay-button-size);
+  
+  background: var(--backup-refresh-button-bg);
+  padding: 0;
+  border: 0;
+  z-index: 3;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  .icon {
+    @include centered-container();
+    
+    background: var(--bg);
+    mix-blend-mode: darken;
+    svg {
+      filter: var(--shadow);
+      path {
+        fill: white;
+      }
+    }
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="animation">
+        <svg id="name" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 186">
+          <g class="caroline" fill-rule="evenodd">
+            <g class="letter c" data-letter-sequence="1">
+              <path
+                d="M0,46A43.7,43.7,0,0,0,3.7,63.4L41.6,3A42.9,42.9,0,0,0,0,46Z"
+                data-color-sequence="1"
+                data-anim-sequence="2"
+              ></path>
+              <path
+                d="M6.2,68.2A43,43,0,0,0,42.1,89H69L42.1,46,69,3H47.2Z"
+                data-color-sequence="2"
+                data-anim-sequence="1"
+              ></path>
+            </g>
+            <g class="letter a" data-letter-sequence="2">
+              <rect
+                x="74"
+                y="70.4"
+                width="80"
+                height="18.55"
+                data-morph="data-morph"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+              ></rect>
+              <polygon
+                points="82.6 70.4 74 89 154 89 145.4 70.4 82.6 70.4"
+                data-morph="data-morph"
+                data-morph-sequence="2"
+              ></polygon>
+              <rect
+                x="112"
+                y="3"
+                width="4"
+                height="62.71"
+                data-morph="data-morph"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+              ></rect>
+              <polygon
+                points="114 3 84.9 65.7 143.3 65.7 114 3"
+                data-morph="data-morph"
+                data-morph-sequence="1"
+              ></polygon>
+            </g>
+            <g class="letter r" data-letter-sequence="3">
+              <path
+                d="M182.1,89H228L206.8,59.3A28.6,28.6,0,0,0,199.4,3H182.1Z"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+              ></path>
+              <polygon
+                points="159 89 177.4 89 177.4 3 159 3 159 89"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+              ></polygon>
+            </g>
+            <g class="letter o" data-letter-sequence="4">
+              <path
+                d="M280.4,89a44.5,44.5,0,0,0,0-89Z"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+              ></path>
+              <path
+                d="M233,44.5A44.8,44.8,0,0,0,275.7,89V0A44.6,44.6,0,0,0,233,44.5Z"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+              ></path>
+            </g>
+            <g class="letter l" data-letter-sequence="5">
+              <polygon
+                points="328 50.2 362.1 50.2 362.1 3 328 3 328 50.2"
+                data-anim-sequence="2"
+                data-color-sequence="1"
+              ></polygon>
+              <polygon
+                points="362.1 54.9 328 54.9 328 89 399 89 399 54.9 362.1 54.9"
+                data-anim-sequence="1"
+                data-color-sequence="2"
+              ></polygon>
+            </g>
+            <g class="letter i" data-letter-sequence="6">
+              <polygon
+                points="404 89 438 89 438 31.6 404 31.6 404 89"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+              ></polygon>
+              <polygon
+                points="404 26.9 438 26.9 438 3 404 3 404 26.9"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+              ></polygon>
+            </g>
+            <g class="letter n" data-letter-sequence="7">
+              <polygon
+                points="480.9 3 480.9 25.5 514 50.9 514 3 480.9 3"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+              ></polygon>
+              <polygon
+                points="443 3 443 89 514 89 514 56.8 443 3"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+              ></polygon>
+            </g>
+            <g class="letter e" data-letter-sequence="8">
+              <polygon
+                points="519 3 519 31.6 567 31.6 576 31.6 576 3 519 3"
+                data-anim-sequence="3"
+                data-color-sequence="1"
+              ></polygon>
+              <polygon
+                points="519 55.5 567 55.5 567 36.5 519 36.5 519 55.5"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+              ></polygon>
+              <polygon
+                points="567 60.3 519 60.3 519 89 576 89 576 60.3 567 60.3"
+                data-anim-sequence="1"
+                data-color-sequence="3"
+              ></polygon>
+            </g>
+          </g>
+          <g class="artz">
+            <g class="letter a" data-letter-sequence="9">
+              <polygon
+                points="250 100 220.9 162.7 279.3 162.7 250 100"
+                data-anim-sequence="2"
+                data-color-sequence="1"
+              ></polygon>
+              <polygon
+                points="218.6 167.4 210 186 290 186 281.4 167.4 218.6 167.4"
+                data-anim-sequence="1"
+                data-color-sequence="2"
+              ></polygon>
+            </g>
+            <g class="letter r" data-letter-sequence="10">
+              <path
+                d="M318.1,186H364l-21.2-29.7a28.6,28.6,0,0,0-7.4-56.3H318.1Z"
+                data-morph-sequence="2"
+              ></path>
+              <polygon
+                points="295 186 313.4 186 313.4 100 295 100 295 186"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+              ></polygon>
+              <rect
+                rect="rect"
+                x="318.1"
+                y="100"
+                width="45.9"
+                height="86"
+                data-morph="data-morph"
+                data-anim-sequence="2"
+                data-color-sequence="1"
+              ></rect>
+            </g>
+            <g class="letter t" data-letter-sequence="11">
+              <polygon
+                points="369 100 369 128.6 386.9 128.6 420.1 128.6 438 128.6 438 100 369 100"
+                data-anim-sequence="1"
+                data-color-sequence="1"
+                data-draw="data-draw"
+              ></polygon>
+              <polygon
+                points="386.9 186 420.1 186 420.1 133.5 386.9 133.5 386.9 186"
+                data-anim-sequence="2"
+                data-color-sequence="2"
+                data-draw="data-draw"
+              ></polygon>
+              <path
+                d="M369.8,100.5h67.1v27.1H370V101c1-.2,2.3-.4,2.7.2s-2.8,4.5-2.4,4.8,7.4-5.1,7.7-4.7-8.1,8.6-7.8,9,11.9-8.9,12-8.8-3.8,3.4-8.8,8.5c0,0-2.7,2.6-2.5,2.7s6.1-5.8,14.5-10.4c1.4-.8,1.9-1,2-.9s-17.5,14.2-17.3,14.4,19.6-14.5,19.9-14.1-19.9,16.4-19.6,16.8,22.5-16.9,22.7-16.6-23.3,19.1-22.9,19.5,27.2-20.2,27.5-19.8S370,124,370.2,124.3s30.6-23.4,30.9-23-29.8,24.4-29.5,24.8,32.6-25.2,33.1-24.5-27.8,24.3-27.6,24.5S408,101,408.4,101.6s-27.7,24.9-27.3,25.4,31.3-25.9,31.9-25.2-24.9,23.8-24.7,24.1,28.2-25,28.7-24.4-24.9,25-24.6,25.3,28.1-26.4,28.8-25.7-23.3,25.6-23.1,25.8,25.2-26.1,25.8-25.6-22.3,25.7-22,26,24.8-26.5,25.2-26.1-22.1,25.6-21.5,26.1S430.3,101,431,101.7s-19.9,24.9-19.7,25.1,21.9-26.1,22.6-25.5-18,24.9-17.6,25.2,19.4-23.8,20-23.3-16.3,23.6-15.7,24.1,14.5-17.8,15.4-17.2-9.7,16.2-9,16.7,4.5-4.3,7.5-8.1c.9-1,1.7-2.2,1.9-2.1s-5.6,9.5-4.7,10.2,3.6-4.4,4.5-3.9.1,2.3-.5,4.4"
+                data-draw-sequence="1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                fill="none"
+              ></path>
+              <path
+                d="M387.9,134.5V185h31.2V134.5c-25.1.3-30.8.5-30.8.6s29.1,0,29.2.8-29,1.9-29,2.3,29.8-.7,29.9-.2-30.1,2.1-30,2.6,29.6-.7,29.6,0-29.4,2.4-29.4,3.1,29.5-.3,29.5.3-29.2,2.4-29.2,3,28.9-.9,28.9-.3-29.1,2.2-29.1,2.8,30.1-.5,30.1.1-30.5,2.6-30.4,3.4,30.4-.2,30.4.6-30.6,2.3-30.5,3,30.1-.5,30.2.1-29.7,2.2-29.7,2.9,29.5-.5,29.6-.1-30,1.9-30,2.3,29.8-.5,29.9,0-29.7,2.1-29.7,2.6,29.8-.6,29.9,0-29.9,2.2-29.9,2.8,30.1-.8,30.1-.2-30.2,2.6-30.2,3,30.1-1.4,30.2-.6-30.4,3.3-30.3,3.9,30.1-1.7,30.2-1.1-29.6,3.5-29.6,4.3,29.3-1.1,29.4-.6-29.9,3.1-29.8,3.7,29.8-1,29.9-.5-30.3,2.6-30.2,3.2,29.4-.7,29.4-.3-28.6,1.9-28.5,2.3,13.7.1,28.4-.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                fill="none"
+                data-draw-sequence="2"
+              ></path>
+            </g>
+            <g class="letter z" data-letter-sequence="12">
+              <polygon
+                points="445 100 445 128.6 456.8 128.6 445 140.4 445 164.6 510.3 100 445 100"
+                data-anim-sequence="2"
+                data-color-sequence="1"
+              ></polygon>
+              <polygon
+                points="445 171.4 445 186 514 186 514 157.3 502.2 157.3 514 145.6 514 103.1 445 171.4"
+                data-anim-sequence="1"
+                data-color-sequence="2"
+              ></polygon>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="controls">
+        <button class="replay">
+          <div class="icon">
+            <svg viewBox="0 0 512 512">
+              <path
+                d="M481.13 171.35c8.449-2.518 17.409 2.26 19.947 10.709A256.027 256.027 0 01512 256c0 141.163-114.837 256.002-256 256.002-52.843 0-102.87-16.215-144.853-45.271l-40.043 40.512c-9.899 10.048-27.221 3.157-27.37-11.072l-1.068-96a15.981 15.981 0 014.63-11.414c2.987-3.05 7.104-4.757 11.37-4.757h96c14.187 0 21.355 17.152 11.371 27.243l-32.106 32.469C169.664 467.115 211.733 480 256 480c123.52 0 224-100.48 224-224a223.77 223.77 0 00-9.579-64.704c-2.538-8.47 2.262-17.387 10.71-19.947zM442.028 4.692C452.032-5.355 469.333 1.75 469.333 16v96c0 8.832-7.168 16-16 16h-96c-14.208 0-21.354-17.259-11.306-27.307l32.256-32.256C342.507 44.95 300.373 32 256 32 132.48 32 32 132.48 32 256a223.77 223.77 0 009.579 64.704c2.538 8.47-2.24 17.387-10.71 19.947-8.618 2.56-17.429-2.368-19.946-10.71A256.027 256.027 0 010 256C0 114.837 114.837 0 256 0c52.992 0 103.147 16.299 145.195 45.525z"
+              ></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.6/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.25.6/babel.js"></script>
+    <script>
+        const MAX_LETTER_SHAPES = 3
+const LAST_NAME_COLOR_OFFSET = 6
+const GRADIENT_SETS = [
+  ["#133F95", "#2460AD", "#3580C2", "#479FD1", "#71BEDE", "#9FDDED", "#CCFCFD"],
+  ["#f94e7c", "#f4c07b", "#f3e96e", "#8bcbb7", "#71b2d6", "#a87caa"],
+  ["#cb3c9b","#791b85","#3226C4","#605bcc", "#6685f3", "#4db1f9", "#02c6cc", "#1accb0"],
+  ["#f2d3a2","#e8a480","#d87373","#ba4578","#862589","#1e41b5"],
+  ["#927DF7","#DF79DD","#EE7CB4","#F19795","#F5B985","#F9DE87", "#FFFF9F"]
+]
+
+const svg = document.getElementById("name")
+const replayButton = document.querySelector("button.replay");
+const gradientRotator = gsap.utils.wrap(GRADIENT_SETS)
+let currentGradientIndex = gsap.utils.random(0, GRADIENT_SETS.length - 1, 1);
+
+const blockEvents = (ts = []) => gsap.utils.toArray(ts).forEach(t => t.classList.add("no-events"))
+const allowEvents = (ts = []) => gsap.utils.toArray(ts).forEach(t => t.classList.remove("no-events"))
+const timeline = targets => {
+  return gsap.timeline({
+    delay: 0.05,
+    onInterrupt: blockEvents,
+    onComplete: allowEvents,
+    onStart: blockEvents,
+    onStartParams: [targets],
+    onCompleteParams: [targets],
+    onInterruptParams: [targets]
+  })
+}
+
+registerEffects()
+prepareElements()
+setupReplayButton()
+
+const animations = createAnimations()
+
+const run = (replay = false) => {
+  prepareElements(replay)
+  setupColors(replay)
+
+  const tl = gsap.timeline({
+    autoRemoveChildren: true,
+    onStart: () => svg.classList.add("no-events"),
+    onComplete: () => {
+      if (!replay) {
+        setupListeners(animations)
+      }
+
+      svg.classList.remove("no-events")
+      setRefreshGradient()
+    }
+  })
+
+  const randomStartTime = gsap.utils.wrap(_.shuffle([0, 1, 2, 3]))
+  _.shuffle(animations).forEach((anim, i) => tl.add(anim, randomStartTime(i)))
+}
+
+run()
+
+/* *************************************
+  Letter Animations
+*****************************************/
+
+function createAnimations() {
+  // ----------- Caroline - C
+  const letterC = ({ pieces: [first, last] }) =>
+    timeline([first, last])
+      .bounceDown(first, { y: -400 })
+      .fromTo(last, { x: -200 }, { autoAlpha: 1, x: 0 })
+      .fromTo(last, { rotation: -80, transformOrigin: "bottom left" }, { duration: 0.4, y: 0 }, ">")
+      .to(last, { rotation: 0, duration: 1.3, ease: "bounce(0.6)" }, ">")
+
+  // ----------- Caroline - A
+  const letterA1 = ({ pieces: [first, last], morph: [firstEnd, lastEnd] }) =>
+    timeline([first, last])
+      .to(first, { morphSVG: first, autoAlpha: 1, duration: 0.1 })
+      .to(last, { morphSVG: last, autoAlpha: 1, duration: 0.1 })
+      .from(first, { scaleY: 0, duration: 2 })
+      .to(first, { duration: 1, morphSVG: firstEnd }, ">")
+      .from(last, { scaleY: 0 }, 0)
+      .to(last, { duration: 1, morphSVG: lastEnd }, 1)
+
+  // ----------- Caroline - R
+  const letterR1 = ({ pieces: [first, last] }) =>
+    timeline([first, last])
+      .to([first, last], { autoAlpha: 1, duration: 0.1 })
+      .from(first, { scaleX: 0 })
+      .from(last, { scale: 0, rotation: -180, transformOrigin: "top left" })
+      .set([first, last], {autoAlpha: 1})
+
+  // ----------- Caroline - O
+  const letterO = ({ pieces: [first, last], full }) =>
+    timeline([first, last])
+      .to([first, last], { autoAlpha: 1, duration: 0.1 } )
+      .to(full, {
+        rotation: -360,
+        autoAlpha: 1,
+        duration: 2,
+        transformOrigin: "center",
+        ease: "wiggle({type:easeInOut, wiggles:15})",
+      })
+      .from(full, { x: "+=1000", duration: 2, ease: "back.out(3)" }, 0)
+      .to(full, { rotation: 0, x: 0, autoAlpha: 1 })
+
+  // ----------- Caroline - L
+  const letterL = ({ pieces: [first, last] }) =>
+    timeline([first, last])
+      .to(last, { transformOrigin: "bottom center", y: -47.2, rotation: 180, duration: 0.05 })
+      .fromTo(first, { scaleX: 0 }, { scaleX: 1, autoAlpha: 1, duration: 1 })
+      .fromTo(last, { scaleY: 0, y: 5 }, { autoAlpha: 1, scaleY: 1, y: 0 }, 0.5)
+
+  // ----------- Caroline - I
+  const letterI = ({ pieces: [first, last] }) =>
+    timeline([first, last])
+      .to([first, last], { scaleY: 0, autoAlpha: 0, duration: 0.01 })
+      .to(last, { y: 23.9, rotation: 360, duration: 0.01 }, 0)
+      .to(last, { scaleY: 1, autoAlpha: 1, duration: 1 })
+      .to(first, { scaleY: 1, autoAlpha: 1, duration: 1.5 }, "<0.05")
+      .to(last, { transformOrigin: "50% 0", rotation: 180, ease: "steps(4)", duration: 1.3 })
+
+  // ----------- Caroline - N
+  const letterN = ({ pieces: [first, last] }) =>
+    timeline([first, last])
+      .set([first, last], { autoAlpha: 0 })
+      .from(first, { x: "200%", y: 500, duration: 0.75, ease: "back.out(1.4)" })
+      .to(first, { autoAlpha: 1, duration: 0.2 }, 0)
+      .from(last, { y: -500, x: "-200%", duration: 0.75, ease: "back.out(1.6)" }, 0.2)
+      .to(last, { autoAlpha: 1, duration: 0.2 }, "<")
+
+  // ----------- Caroline - E
+  const letterE = ({ pieces, pieces: [first, middle, last] }) =>
+    timeline(pieces)
+      .to([first, middle, last], {autoAlpha: 1})
+      .staggerInLeft(pieces, { stagger: 0.2 })
+
+  // ----------- Artz - A
+  const letterA2 = ({ pieces }) =>
+    timeline(pieces).bounceDown(pieces, { y: -500, stagger: 0.2 })
+
+  // ----------- Artz - R
+  const letterR2 = ({ full, pieces: [first, last], morph: [, lastEnd] }) =>
+    timeline([first, last])
+      .set(last, { morphSVG: last })
+      .from(full, { x: "+=400", ease: "power3.in", duration: 1.5 }, "zoomIn")
+      .from(first, { x: "+=20", ease: "power1.out" }, ">0.1")
+      .fromTo([first, last], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 }, "zoomIn")
+      .to(last, { morphSVG: lastEnd })
+
+  // ----------- Artz - T
+  const letterT = ({ full, pieces: [first, last], draw: [firstDraw, lastDraw] }) =>
+    timeline([full, first, last, firstDraw, lastDraw])
+      .to([firstDraw, lastDraw], {autoAlpha: 0, drawSVG: 0, duration: 0.01 })
+      .to([firstDraw, lastDraw], { drawSVG: 0, autoAlpha: 1, duration: 0.01 }, ">")
+      .to(firstDraw, { drawSVG: "100%", duration: 2 }, "first-draw")
+      .to(lastDraw, { drawSVG: "100%", duration: 2 }, "last-draw")
+      .to(first, { autoAlpha: 1, duration: 0.5 }, "first-draw+=2")
+      .to(last, { autoAlpha: 1, duration: 0.5 }, "last-draw+=2")
+      .to(firstDraw, { autoAlpha: 0, duration: 0.5 }, "first-draw+=2.5")
+      .to(lastDraw, { autoAlpha: 0, duration: 0.5 }, "last-draw+=2.5")
+
+  // ----------- Artz - Z
+  const letterZ = ({ pieces: [first, last] }) =>
+    timeline([first, last])
+      .fromTo(first, { y: 200, autoAlpha: 0, x: "-100%" }, { y: 0, autoAlpha: 1, x: 0, ease: "back.out(2)" })
+      .fromTo(last, { y: -200, autoAlpha: 0, x: "100%" }, { y: 0, autoAlpha: 1, x: 0, ease: "back.out(2)" }, 0.2)
+
+    return [
+      animation(1, letterC),
+      animation(2, letterA1),
+      animation(3, letterR1),
+      animation(4, letterO),
+      animation(5, letterL),
+      animation(6, letterI),
+      animation(7, letterN),
+      animation(8, letterE),
+      animation(9, letterA2),
+      animation(10, letterR2),
+      animation(11, letterT),
+      animation(12, letterZ),
+  ]
+}
+
+// Util for creating the animation with all the required targets as args
+function animation(letterSequence, fn) {
+  const full = sequenceSelector("letter", letterSequence)
+  const baseSequence = _.range(1, MAX_LETTER_SHAPES + 1)
+  const pieces = baseSequence.map(sq => sequenceSelector("anim", sq, full))
+  const morph = baseSequence.map(sq => sequenceSelector("morph", sq, full))
+  const draw = baseSequence.map(sq => sequenceSelector("draw", sq, full))
+
+  return fn({ full, pieces, morph, draw })
+}
+
+function sequenceSelector(type, value, parentSelector = "") {
+  return `${parentSelector} [data-${type}-sequence='${value}']`
+}
+
+// ***************************************
+// Initial State
+// ***************************************
+
+function prepareElements(replay = false) {
+  gsap.set([replayButton, "[data-anim-sequence]", "[data-draw-sequence]"], { autoAlpha: 0 })
+  if (!replay) {
+    MorphSVGPlugin.convertToPath("[data-morph]")
+  }
+}
+
+// ***************************************
+// Letter Colorization
+// ***************************************
+
+function setRefreshGradient() {
+  const nextColors = gradientRotator(currentGradientIndex)
+
+  const gradientSegmentSize = 360/nextColors.length;
+  let firstColor, restColors, middleColors, lastColor;
+  [firstColor, ...restColors] = nextColors;
+  [lastColor, ...restColors] = restColors.reverse();
+  middleColors = restColors.reverse();
+
+  const gradientStart = `${firstColor} ${gradientSegmentSize}deg`
+  const gradientEnd = `${lastColor} ${gradientSegmentSize * (nextColors.length - 1)}deg`
+  const gradientMiddle = middleColors.map((color, i) => `${color} ${gradientSegmentSize * (i + 1)}deg ${gradientSegmentSize * (i + 2)}deg`).join(", ")
+
+  replayButton.style.background = `conic-gradient(${[gradientStart, gradientMiddle, gradientEnd].join(", ")})`;
+  gsap.to(replayButton, {autoAlpha: 1})
+}
+
+function setupColors() {
+  gsap.to(replayButton, {autoAlpha: 0, duration: 0.5})
+  const colorInterpolator = gsap.utils.interpolate(gradientRotator(currentGradientIndex++))
+  const colorInterpolationCount = gsap.utils.toArray(".caroline [data-color-sequence]").length
+  const getElemsForColor = groupSelector =>
+    gsap.utils
+      .toArray(`${groupSelector} .letter`)
+      .flatMap(letterEls =>
+        _.sortBy([...letterEls.querySelectorAll("[data-color-sequence]")], el =>
+          parseInt(el.dataset.colorSequence)
+        )
+      )
+
+  getElemsForColor(".caroline").forEach((el, i) =>
+    gsap.set(el, { fill: colorInterpolator(i / colorInterpolationCount) })
+  )
+  getElemsForColor(".artz").forEach((el, i) => {
+    const color = colorInterpolator((i + LAST_NAME_COLOR_OFFSET) / colorInterpolationCount)
+    const documentStyle = document.documentElement.style
+    gsap.set(el, { fill: color })
+
+    if (el.dataset.draw && el.dataset.colorSequence === "1") {
+      documentStyle.setProperty("--t-top-fill", color)
+    } else if (el.dataset.draw && el.dataset.colorSequence === "2") {
+      documentStyle.setProperty("--t-stem-fill", color)
+    }
+  })
+}
+
+// ***************************************
+// Animation Events
+// ***************************************
+
+function setupListeners(animations) {
+  // animate individuals on hover
+  gsap.utils.toArray(".letter").forEach((el, i) => {
+    el.addEventListener("mouseover", () => {
+      const foo = animations[i]
+      timeline([el.querySelectorAll("*")])
+        .add(foo)
+    })
+  })
+
+  // animate from start on replay
+  replayButton.addEventListener('click', () => run(true))
+}
+
+// ***************************************
+// Effects
+// ***************************************
+
+function registerEffects() {
+  CustomBounce.create("myBounce", { strength: 0.7, squash: 2 })
+
+  gsap.registerEffect({
+    name: "bounceDown",
+    effect: (targets, config) => {
+      return gsap
+        .timeline()
+        .set(targets, { autoAlpha: 0 })
+        .fromTo(
+          targets,
+          { y: config.y },
+          {
+            y: 0,
+            duration: config.duration,
+            ease: "myBounce",
+            stagger: config.stagger,
+          },
+          "bounceIn"
+        )
+        .to(targets, { autoAlpha: 1, duration: 0.3 }, "bounceIn+=0.2")
+        .to(
+          targets,
+          {
+            transformOrigin: "50% 100%",
+            duration: config.duration,
+            scaleY: 0.5,
+            scaleX: 1.5,
+            ease: "myBounce-squash",
+          },
+          "<bounceIn"
+        )
+    },
+    defaults: { duration: 2, stagger: 0.01, y: 0 },
+    extendTimeline: true,
+  })
+
+  gsap.registerEffect({
+    name: "staggerInLeft",
+    effect: (targets, config) => {
+      return gsap
+        .timeline()
+        .set(targets, { autoAlpha: 1 })
+        .from(targets, {
+          scaleX: 0,
+          duration: config.duration,
+          ease: "elastic.out(0.8, 0.1)",
+          stagger: config.stagger,
+        })
+    },
+    defaults: { duration: 2, stagger: 0 },
+    extendTimeline: true,
+  })
+}
+
+
+// ***************************************
+// Replay Button
+// ***************************************
+
+function setupReplayButton() {
+  const MAX_TIMESCALE = 0.8
+  const MIN_TIMESCALE = 0.05
+
+  let buttonTween;
+  let rangeMapper
+  let startingDistance
+
+  const calculateDistance = (elem, mouseX, mouseY) => {
+    const rect = elem.getBoundingClientRect()
+    const left = rect.left + window.scrollX
+    const top = rect.top + window.scrollY
+
+    return Math.floor(
+      Math.sqrt(
+        Math.pow(mouseX - (left + (rect.width/2)), 2) +
+        Math.pow(mouseY - (top + (rect.height/2)), 2)
+      )
+    );
+  }
+
+  const createButtonTween = () => gsap.to(replayButton, {
+    rotation: "+=360",
+    repeat: -1,
+    ease: "none"
+  })
+
+  replayButton.addEventListener("mouseenter", evt => {
+    startingDistance = calculateDistance(evt.target, event.pageX, event.pageY)
+    rangeMapper = gsap.utils.mapRange(0, startingDistance, MIN_TIMESCALE, MAX_TIMESCALE)
+    buttonTween = buttonTween || createButtonTween()
+  })
+
+  replayButton.addEventListener("mousemove", evt => {
+    const distance = calculateDistance(evt.target, event.pageX, event.pageY)
+    const timeScale = distance < 5 ? 1.5 : rangeMapper(startingDistance - distance)
+    buttonTween.timeScale(timeScale)
+  })
+
+  replayButton.addEventListener("mouseleave", evt => buttonTween.timeScale(0))
+}
+
+    </script>
+  </body>
+</html>
